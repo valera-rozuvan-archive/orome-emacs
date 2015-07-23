@@ -1,6 +1,6 @@
 {
   "name": "orome-emacs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     "Valera Rozuvan <valera.rozuvan@gmail.com>"
   ],
@@ -17,7 +17,8 @@
     "less-css-mode": "purcell/less-css-mode",
     "load-directory-mu": "valera-rozuvan/load-directory-mu",
     "markdown-mode": "defunkt/markdown-mode",
-    "popup-el": "auto-complete/popup-el"
+    "popup-el": "auto-complete/popup-el",
+    "yaml-mode": "yoshiki/yaml-mode"
   },
   "devDependencies": {}
 }

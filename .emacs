@@ -19,4 +19,5 @@
  )
 
 (load-directory-mu "~/.emacs.d/config-editor")
-(load-directory-mu "~/.emacs.d/config")
+(load-directory-mu "~/.emacs.d/config-vendor")
+(load-directory-mu "~/.emacs.d/config-modes")
