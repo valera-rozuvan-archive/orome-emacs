@@ -16,6 +16,11 @@
     ;; (global-set-key "\em" 'newline) ;; for emacs 23
     ;; (global-set-key "\em" 'electric-newline-and-maybe-indent) ;; for emacs 24
 )
+(defun reset-indent-function ()
+    (interactive)
+
+    (setq indent-line-function (quote tab-to-tab-stop))
+)
 (dolist (
     hook '(
         emacs-lisp-mode-hook
@@ -30,10 +35,10 @@
         coffee-mode-hook
 
         sass-mode-hook
-        less-css-mode
-        css-mode
+        less-css-mode-hook
+        css-mode-hook
 
-        yaml-mode
+        yaml-mode-hook
 
         markdown-mode-hook
 
@@ -42,6 +47,7 @@
     ))
     (add-hook hook 'no-indentation-for-tab)
     (add-hook hook 'set-newline-for-return)
+    (add-hook hook 'reset-indent-function)
 )
 
 ;;
