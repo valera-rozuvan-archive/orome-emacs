@@ -160,6 +160,30 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Open a new frame with a *scratch* buffer. To be used as a temporary scratch
+;; pad.
+;;
+
+(defun new-frame-with-scratch ()
+  "Open a new frame with scratch buffer selected"
+  (interactive)
+  (let ((frame (make-frame))
+        (scratch-name "*temp*"))
+    (select-frame-set-input-focus frame)
+    (unless (get-buffer scratch-name)
+      (with-current-buffer (get-buffer-create scratch-name)
+        (text-mode)))
+    (switch-to-buffer scratch-name 'norecord)))
+
+(global-set-key (kbd "C-9") 'new-frame-with-scratch)
+
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; I want to disable electric indent mode for all major modes.
 ;;
 
