@@ -1,5 +1,7 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Configure the theme and the font size.
-;; (load-theme 'deeper-blue t)
+;;
 
 (load-theme 'adwaita t)
 
@@ -11,6 +13,8 @@
 
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Font. Make sure that you have the "Inconsolata" font installed.
 ;; On Debian-like distros you can do:
 ;;
