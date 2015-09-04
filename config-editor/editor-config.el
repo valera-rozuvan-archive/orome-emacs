@@ -1,9 +1,14 @@
 ;; Configure the theme and the font size.
 ;; (load-theme 'deeper-blue t)
+
 (load-theme 'adwaita t)
 
 (add-to-list 'default-frame-alist '(height . 26))
 (add-to-list 'default-frame-alist '(width . 121))
+
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 
 ;; Font. Make sure that you have the "Inconsolata" font installed.
@@ -11,18 +16,39 @@
 ;;
 ;;     sudo apt-get install ttf-inconsolata
 ;;
+
 (set-default-font "Inconsolata-14")
 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Make sure that the current position (line and column number) of the
 ;; cursor is shown.
+;;
+
 (setq line-number-mode t)
 (setq column-number-mode t)
 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Disable the start-up splash screen.
+;;
+
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
+
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -71,6 +97,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; On save, remove trailing whitespace from all lines.
+;;
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -113,6 +140,7 @@
 ;; The default tab stops are 8 spaces appart.
 ;; Using some manual editing, we change this list.
 ;; Tabs will be 2, 4, 6, 8, 10, ..., 118, 120 spaces apart.
+;;
 
 (setq tab-stop-list (number-sequence 2 120 2))
 
@@ -153,6 +181,32 @@
 (eval-after-load "dired"
   '(define-key dired-mode-map "F" 'dired-find-file-other-frame)
 )
+
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; I want to be able to quickly view open buffers with ibuffer. I want to see
+;; this information in a new frame.
+;;
+
+(defun ibuffer-in-new-frame ()
+  "Open a new frame with ibuffer running"
+  (interactive)
+  (let ((frame (make-frame))
+        (scratch-name "*temp*"))
+    (select-frame-set-input-focus frame)
+    (unless (get-buffer scratch-name)
+      (with-current-buffer (get-buffer-create scratch-name)
+        (text-mode)))
+    (switch-to-buffer scratch-name 'norecord)
+    (call-interactively 'ibuffer)))
+
+(global-set-key (kbd "C-x C-b") 'ibuffer-in-new-frame)
+
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
