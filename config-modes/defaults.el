@@ -34,6 +34,8 @@
         js2-mode-hook
         coffee-mode-hook
 
+        typescript-mode-hook
+
         sass-mode-hook
         less-css-mode-hook
         css-mode-hook

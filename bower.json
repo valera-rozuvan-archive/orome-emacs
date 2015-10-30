@@ -18,7 +18,9 @@
     "load-directory-mu": "valera-rozuvan/load-directory-mu",
     "markdown-mode": "defunkt/markdown-mode",
     "popup-el": "auto-complete/popup-el",
-    "yaml-mode": "yoshiki/yaml-mode"
+    "yaml-mode": "yoshiki/yaml-mode",
+    "emacs-neotree": "jaypei/emacs-neotree",
+    "typescript.el": "ananthakumaran/typescript.el"
   },
   "devDependencies": {}
 }
