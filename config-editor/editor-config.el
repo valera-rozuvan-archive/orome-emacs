@@ -148,8 +148,11 @@
            (* 100 (frame-char-width)))
         2))))
 
-;; Now activate this global minor mode
-(bzg-big-fringe-mode 1)
+;; Now activate this global minor mode.
+;; (bzg-big-fringe-mode 1)
+
+;; By default, we do not want to activate this mode.
+(bzg-big-fringe-mode 0)
 
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
