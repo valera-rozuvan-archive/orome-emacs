@@ -15,13 +15,19 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Font. Make sure that you have the "Inconsolata" font installed.
-;; On Debian-like distros you can do:
+;; Use the Inconsolata font. Make sure that you have the "Inconsolata" font
+;; installed. On Debian-like distros you can do:
 ;;
 ;;     sudo apt-get install ttf-inconsolata
 ;;
+;; On Windows, download the font, and install it.
+;;
 
 (set-default-font "Inconsolata-14")
+(add-to-list
+    'default-frame-alist
+    '(font . "Inconsolata-14")
+)
 
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -87,10 +93,10 @@
 ;;
 
 (setq backup-directory-alist
-  `((".*" . ,temporary-file-directory))
+    `((".*" . ,temporary-file-directory))
 )
 (setq auto-save-file-name-transforms
-  `((".*" ,temporary-file-directory t))
+    `((".*" ,temporary-file-directory t))
 )
 
 ;;
@@ -136,20 +142,18 @@
 ;; A small minor mode to use a big fringe
 (defvar bzg-big-fringe-mode nil)
 (define-minor-mode bzg-big-fringe-mode
-  "Minor mode to use big fringe in the current buffer."
-  :init-value nil
-  :global t
-  :variable bzg-big-fringe-mode
-  :group 'editing-basics
-  (if (not bzg-big-fringe-mode)
-      (set-fringe-style nil)
-    (set-fringe-mode
-     (/ (- (frame-pixel-width)
-           (* 100 (frame-char-width)))
-        2))))
-
-;; Now activate this global minor mode.
-;; (bzg-big-fringe-mode 1)
+    "Minor mode to use big fringe in the current buffer."
+    :init-value nil
+    :global t
+    :variable bzg-big-fringe-mode
+    :group 'editing-basics
+    (if (not bzg-big-fringe-mode)
+        (set-fringe-style nil)
+        (set-fringe-mode
+            (/ (- (frame-pixel-width) (* 100 (frame-char-width))) 2)
+        )
+    )
+)
 
 ;; By default, we do not want to activate this mode.
 (bzg-big-fringe-mode 0)
@@ -186,36 +190,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Set tab width to 2 for all buffers.
-;;
-
-(setq-default tab-width 2)
-(setq tab-width 2)
-
-(setq-default c-basic-offset 2)
-(setq c-basic-offset 2)
-
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; The default tab stops are 8 spaces appart.
-;; Using some manual editing, we change this list.
-;; Tabs will be 2, 4, 6, 8, 10, ..., 118, 120 spaces apart.
-;;
-
-(setq tab-stop-list (number-sequence 2 120 2))
-
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; Enable the display of date and time in mode line.
 ;;
 
@@ -238,13 +212,13 @@
 ;;
 
 (defun dired-find-file-other-frame ()
-  "In Dired, visit this file or directory in another window."
-  (interactive)
-  (find-file-other-frame (dired-get-file-for-visit))
+    "In Dired, visit this file or directory in another window."
+    (interactive)
+    (find-file-other-frame (dired-get-file-for-visit))
 )
 
 (eval-after-load "dired"
-  '(define-key dired-mode-map "F" 'dired-find-file-other-frame)
+    '(define-key dired-mode-map "F" 'dired-find-file-other-frame)
 )
 
 ;;
@@ -259,16 +233,22 @@
 ;;
 
 (defun ibuffer-in-new-frame ()
-  "Open a new frame with ibuffer running"
-  (interactive)
-  (let ((frame (make-frame))
-        (scratch-name "*temp*"))
-    (select-frame-set-input-focus frame)
-    (unless (get-buffer scratch-name)
-      (with-current-buffer (get-buffer-create scratch-name)
-        (text-mode)))
-    (switch-to-buffer scratch-name 'norecord)
-    (call-interactively 'ibuffer)))
+    "Open a new frame with ibuffer running"
+    (interactive)
+    (let (
+            (frame (make-frame))
+            (scratch-name "*temp*")
+        )
+        (select-frame-set-input-focus frame)
+        (unless (get-buffer scratch-name)
+            (with-current-buffer (get-buffer-create scratch-name)
+                (text-mode)
+            )
+        )
+        (switch-to-buffer scratch-name 'norecord)
+        (call-interactively 'ibuffer)
+    )
+)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer-in-new-frame)
 
@@ -284,15 +264,21 @@
 ;;
 
 (defun new-frame-with-scratch ()
-  "Open a new frame with scratch buffer selected"
-  (interactive)
-  (let ((frame (make-frame))
-        (scratch-name "*temp*"))
-    (select-frame-set-input-focus frame)
-    (unless (get-buffer scratch-name)
-      (with-current-buffer (get-buffer-create scratch-name)
-        (text-mode)))
-    (switch-to-buffer scratch-name 'norecord)))
+    "Open a new frame with scratch buffer selected"
+    (interactive)
+    (let (
+            (frame (make-frame))
+            (scratch-name "*temp*")
+        )
+        (select-frame-set-input-focus frame)
+        (unless (get-buffer scratch-name)
+            (with-current-buffer (get-buffer-create scratch-name)
+                (text-mode)
+            )
+        )
+        (switch-to-buffer scratch-name 'norecord)
+    )
+)
 
 (global-set-key (kbd "C-9") 'new-frame-with-scratch)
 
