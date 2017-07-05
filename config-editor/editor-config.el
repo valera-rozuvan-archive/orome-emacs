@@ -370,3 +370,20 @@
 
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Replace all freakin' ^M chars in the current buffer. Map C-c m to replacing
+;; all the ^M characters.
+;;
+;; Idea from: https://josephhall.org/nqb2/index.php/replace_ctrlms
+;;
+
+(fset 'replace-ctrlms
+    [?\M-< ?\M-x ?r ?e ?p ?l ?a tab ?s ?t ?r tab return ?\C-q ?\C-m return ?\C-q ?\C-j return])
+(define-key global-map "\C-cm" 'replace-ctrlms)
+
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
