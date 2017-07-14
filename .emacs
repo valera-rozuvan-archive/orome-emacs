@@ -18,6 +18,10 @@
     ;; If there is more than one, they won't work right.
 )
 
+(if (eq system-type 'darwin)
+  (setq ispell-program-name "/usr/local/bin/ispell")
+)
+
 (load-directory-mu "~/.emacs.d/config-editor")
 (load-directory-mu "~/.emacs.d/config-vendor")
 (load-directory-mu "~/.emacs.d/config-modes")

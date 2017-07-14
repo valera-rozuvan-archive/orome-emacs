@@ -20,7 +20,9 @@
     "popup-el": "auto-complete/popup-el",
     "yaml-mode": "yoshiki/yaml-mode",
     "emacs-neotree": "jaypei/emacs-neotree",
-    "typescript.el": "ananthakumaran/typescript.el"
+    "typescript.el": "ananthakumaran/typescript.el",
+    "cmake-font-lock": "Lindydancer/cmake-font-lock",
+    "k-cmake-mode": "valera-rozuvan/k-cmake-mode"
   },
   "devDependencies": {}
 }
